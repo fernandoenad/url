@@ -1,5 +1,12 @@
 <x-app-layout>
-    <div class="max-w-2xl mx-auto p-4 sm:p-6 lg:p-8">
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            {{ __('URLs') }}
+        </h2>
+    </x-slot>
+    
+    <div class="py-12">
+    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
         <form method="POST" action="{{ route('urls.store') }}">
             @csrf
             <input type="text"
@@ -14,7 +21,7 @@
                 name="original_url"
                 maxlength="255"
                 placeholder="{{ __('Original Url') }}"
-                class="block w-full border-gray-300 mt-5 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
+                class="block w-full border-gray-300 mt-2 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
                 value="{{ old('original_url') }}"
             />
             <x-input-error :messages="$errors->get('original_url')" class="mt-2" />
@@ -22,7 +29,7 @@
                 name="shortener_url"
                 maxlength="255"
                 placeholder="{{ __('Alias') }}"
-                class="block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
+                class="block w-full border-gray-300 mt-2 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
                 value="{{ old('shortener_url') }}"
             />
             <x-input-error :messages="$errors->get('shortener_url')" class="mt-2" />
@@ -79,5 +86,6 @@
                 </div>
             @endforeach
         </div>
+    </div>
     </div>
 </x-app-layout>

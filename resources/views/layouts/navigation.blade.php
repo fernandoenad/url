@@ -16,7 +16,7 @@
                         {{ __('Dashboard') }}
                     </x-nav-link>
                     {{-- Add This For URL Shortener Feature (Desktop) --}}
-                    <x-nav-link :href="route('urls.index')" :active="request()->routeIs('urls.index')">
+                    <x-nav-link :href="route('urls.index')" :active="request()->routeIs('urls.*')">
                         {{ __('Urls') }}
                     </x-nav-link>
                 </div>
