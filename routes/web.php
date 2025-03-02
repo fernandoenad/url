@@ -28,7 +28,14 @@ Route::get('/auth/google/callback', function () {
     $user = User::where('email', $googleUser->getEmail())->first();
 
     if (!$user) {
-        return redirect('/')->with('not_reg', 'DepEd email is not registered.');
+        //return redirect('/')->with('not_reg', 'DepEd email is not registered.');
+        // Create new user
+        $user = User::create([
+            'name' => $googleUser->getName(),
+            'email' => $googleUser->getEmail(),
+            'password' => bcrypt(str()->random(16)), // Dummy password
+            'google_id' => $googleUser->getId(),
+        ]);
     }
 
     Auth::login($user);
